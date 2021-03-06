@@ -1,4 +1,3 @@
-# 
 #                           The Zebra Problem
 # 
 #    1.  Five people have five different pets, smoke five different
@@ -33,18 +32,17 @@ condition <- function(v){write(c(v,0),file="zebra.cnf",ncolumns=1000,append=TRUE
 # Einstein puzzle:
 colour <- c("red","green","white","yellow","blue")               # 1
 number <- c("one","two","three","four","five")                   # 2
-nationality <- c("Brit","Swede","Dane","Norwegian","German")     # 3
+nationality <- c("Brit","Norwegian","Swede","Dane","German")     # 3
 pet <- c("dogs","birds","cats","horses","fish")                  # 4
 drink <- c("tea","coffee","milk","beer","water")                 # 5
 smoke <- c("Pall Mall","Dunhill","Blends","BlueMaster","Prince") # 6
 
-
 # zebra puzzle:
 colour      <- c("red","green","white","yellow","blue")                   # 1
 number      <- c("one","two","three","four","five")                        # 2
-nationality <- c("english","spanish","ukranian","japanese","norwegian")     # 3
+nationality <- c("english","norwegian","spanish","ukranian","japanese")     # 3
 pet         <- c("dogs","snails","fox","horse","zebra")                      # 4
-drink       <- c("tea","coffee","orange","milk","water")                      # 5
+drink       <- c("tea","coffee","milk","orange","water")                      # 5
 smoke       <- c("parliaments","oldgold","kools","luckystrike","chesterfield") # 6
 
 index <- c(colour=1, number=2, nationality=3,pet=4,drink=5,smoke=6)
@@ -57,7 +55,7 @@ tf <- 1:25
 f <- function(n,d){matrix(25*(n-1) + 1:25, 5,5,dimnames=d)}
 
 x12 <- f(1, list(colour=colour, number=number))
-x13 <- f(2, list(colour=colour, nationality))
+x13 <- f(2, list(colour=colour, nationality=nationality))
 x14 <- f(3, list(colour=colour, pet=pet))
 x15 <- f(4, list(colour=colour, drink=drink))
 x16 <- f(5, list(colour=colour, smoke=smoke))
@@ -142,15 +140,14 @@ for(i in seq_len(nrow(m1))){
 # The Englishman lives in the red house: colour = #1[red=1], nationality = #3[Brit=1]
 constraint(x13[1, 1])
  
-# The Swede/spaniard keeps dogs as pets; nationality = #3[swede=2], pet= #4[dog=1]
-constraint(x34[2, 1])
+# The Swede/spaniard keeps dogs as pets; nationality = #3[swede=3], pet= #4[dog=1]
+constraint(x34[3, 1])
  
-# The Dane/ukranian drinks tea; nationality = #3[Dane=1], drink = #5[tea=1]
-constraint(x35[3, 1])
+# The Dane/ukranian drinks tea; nationality = #3[Dane=4], drink = #5[tea=1]
+constraint(x35[4, 1])
 
 # The green house is on the left of the white house: colour = #1[green=2, white=3], number = #2
-
-## that is, *exactly one* of the following eight lines must be true:
+# that is, *exactly one* of the following eight lines must be true:
 
 ## (x12[2,1] & x12[3,2])    green@#1, white@#2
 ## (x12[2,2] & x12[3,1])    green@#2, white@#1
@@ -175,28 +172,24 @@ M <- as.matrix(expand.grid(
 for(i in seq_len(nrow(M))){ constraint(M[i,]) }
 
 
+# The green house's owner drinks coffee: colour = #1[green=2], drink = #5[coffee=2]
+constraint(x15[2,2])
 
+# The person who smokes Pall Mall/parliaments rears birds/snails: pets = #4[birds=2], smokes = #6[Pall Mall=1]
+constraint(x46[2, 1])
 
+# The owner of the yellow house smokes Dunhill/oldgold:  colour = #1[yellow=4], smokes = #6[Dunhill=2]
+constraint(x16[4, 3])
 
+# The man living in the center house drinks milk: number = #2[three=3], drink = #5[milk=3]
+constraint(x25[3, 3])
 
-# 
-# # The green house's owner drinks coffee: colour = #1[green=2], drink = #5[coffee=2]
-# s.t. con5: x15[2, 2] == 1 ; 
-# 
-# # The person who smokes Pall Mall rears birds: pets = #4[birds=2], smokes = #6[Pall Mall=1]
-# s.t. con6: x46[2, 1] == 1 ;
-# 
-# # The owner of the yellow house smokes Dunhill:  colour = #1[yellow=4], smokes = #6[Dunhill=3]
-# s.t. con7: x14[4, 3] == 1 ; 
-# 
-# # The man living in the center house drinks milk: number = #2[three=3], drink = #5[milk=3]
-# s.t. con8: x25[3, 3] == 1 ;
-# 
-# # The Norwegian lives in the first house: number = #2[first=1], nationality = #3[Norwegian=4]
-# s.t. con9: x23[1, 4] == 1 ;
-# 
-# # The man who smokes blends lives next to the one who keeps cats:
-# # number = #2[abs(x-y)==1], pets = #4[cats=3] smokes = #6[blends = 3]
+# The Norwegian lives in the first house: number = #2[first=1], nationality = #3[Norwegian=2]
+constraint(x23[1, 4])
+ 
+# The man who smokes blends lives next to the one who keeps cats:
+
+# number = #2[abs(x-y)==1], pets = #4[cats=3] smokes = #6[blends = 3]
 # 
 # # So it's *either* (cats@no. 1 and blends@no. 2) or (cats@no. 2 and blends@ no. 1) 
 # #         *or*     (cats@no. 2 and blends@no. 3) or (cats@no. 3 and blends@ no. 2) 
