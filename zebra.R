@@ -73,7 +73,7 @@ constraint(x36[5,1])
 # However, because of the regularity constraints we may say that *at
 # least* one of the above eight lines must be true [because the
 # regularity conditions forbid more than one being true].
-next_to_constraint(
+next_to_constraint( 
   c(x23[1,2] , x12[5,2]),  # norwegian@#1, blue@#2
   c(x23[2,2] , x12[5,1]),  # norwegian@#2, blue@#1
   c(x23[2,2] , x12[5,3]),  # norwegian@#2, blue@#3

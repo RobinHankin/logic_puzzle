@@ -1,4 +1,4 @@
-## The Einstein puzzlen
+## The Einstein puzzle
 
 
 
