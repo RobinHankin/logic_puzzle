@@ -87,38 +87,36 @@ for(i in seq_along(L)){
     }
 }
 
-logical_and <- function(x){ # C = A & B
+logical_implication <- function(x){ # C = A & B
     A <- x[1]
     B <- x[2]
     C <- x[3]
     constraint(c(-A,-B,C))
-    constraint(c(A,-C))
-    constraint(c(B,-C))
 }
 
 for(i in seq_len(5)){
     for(j in seq_len(5)){
         for(k in seq_len(5)){
-            logical_and(c(x12[i,j],x13[i,k],x23[j,k]))
-            logical_and(c(x12[i,j],x14[i,k],x24[j,k]))
-            logical_and(c(x12[i,j],x15[i,k],x25[j,k]))
-            logical_and(c(x12[i,j],x16[i,k],x26[j,k]))
-            logical_and(c(x13[i,j],x14[i,k],x34[j,k]))
-            logical_and(c(x13[i,j],x15[i,k],x35[j,k]))
-            logical_and(c(x13[i,j],x16[i,k],x36[j,k]))
-            logical_and(c(x14[i,j],x15[i,k],x45[j,k]))
-            logical_and(c(x14[i,j],x16[i,k],x46[j,k]))
-            logical_and(c(x15[i,j],x16[i,k],x56[j,k]))
-            logical_and(c(x23[i,j],x24[i,k],x34[j,k]))
-            logical_and(c(x23[i,j],x25[i,k],x35[j,k]))
-            logical_and(c(x23[i,j],x26[i,k],x36[j,k]))
-            logical_and(c(x24[i,j],x25[i,k],x45[j,k]))
-            logical_and(c(x24[i,j],x26[i,k],x46[j,k]))
-            logical_and(c(x25[i,j],x26[i,k],x56[j,k]))
-            logical_and(c(x34[i,j],x35[i,k],x45[j,k]))
-            logical_and(c(x34[i,j],x36[i,k],x46[j,k]))
-            logical_and(c(x35[i,j],x36[i,k],x56[j,k]))
-            logical_and(c(x45[i,j],x46[i,k],x56[j,k]))
+            logical_implication(c(x12[i,j],x13[i,k],x23[j,k]))
+            logical_implication(c(x12[i,j],x14[i,k],x24[j,k]))
+            logical_implication(c(x12[i,j],x15[i,k],x25[j,k]))
+            logical_implication(c(x12[i,j],x16[i,k],x26[j,k]))
+            logical_implication(c(x13[i,j],x14[i,k],x34[j,k]))
+            logical_implication(c(x13[i,j],x15[i,k],x35[j,k]))
+            logical_implication(c(x13[i,j],x16[i,k],x36[j,k]))
+            logical_implication(c(x14[i,j],x15[i,k],x45[j,k]))
+            logical_implication(c(x14[i,j],x16[i,k],x46[j,k]))
+            logical_implication(c(x15[i,j],x16[i,k],x56[j,k]))
+            logical_implication(c(x23[i,j],x24[i,k],x34[j,k]))
+            logical_implication(c(x23[i,j],x25[i,k],x35[j,k]))
+            logical_implication(c(x23[i,j],x26[i,k],x36[j,k]))
+            logical_implication(c(x24[i,j],x25[i,k],x45[j,k]))
+            logical_implication(c(x24[i,j],x26[i,k],x46[j,k]))
+            logical_implication(c(x25[i,j],x26[i,k],x56[j,k]))
+            logical_implication(c(x34[i,j],x35[i,k],x45[j,k]))
+            logical_implication(c(x34[i,j],x36[i,k],x46[j,k]))
+            logical_implication(c(x35[i,j],x36[i,k],x56[j,k]))
+            logical_implication(c(x45[i,j],x46[i,k],x56[j,k]))
         } # k loop closes
     } # j loop closes
 }  # i loop closes
