@@ -32,14 +32,11 @@ smoke       <- c("parliaments","oldgold","kools","luckystrike","chesterfield") #
 
 index <- c(colour=1, number=2, nationality=3,pet=4,drink=5,smoke=6)
 
-
+filename <- "zebra.cnf"
 source("setup.R")
 
-filename <- "zebra.cnf"
+
 write("# comment line",file=filename,append=FALSE)
-
-
-
 
 
 # clue 2: the englishman lives in the red house: colour = #1[red=1], nationality = #3[Brit=1]
@@ -73,7 +70,7 @@ constraint(x36[5,1])
 # However, because of the regularity constraints we may say that *at
 # least* one of the above eight lines must be true [because the
 # regularity conditions forbid more than one being true].
-next_to_constraint( 
+next_to_constraint(
   c(x23[1,2] , x12[5,2]),  # norwegian@#1, blue@#2
   c(x23[2,2] , x12[5,1]),  # norwegian@#2, blue@#1
   c(x23[2,2] , x12[5,3]),  # norwegian@#2, blue@#3
@@ -124,8 +121,6 @@ next_to_constraint(
  c(x12[2,4] , x12[3,5]),   # green@#4, ivory@#5
  c(x12[2,5] , x12[3,4]))   # green@#5, ivory@#4
 
-
-
 # clue  14: The Chesterfield smoker lives next door to the fox owner: number = #2, pets = #4[fox=3], smokes = #6[chesterfield=5]
 # that is, *exactly one* of the following eight lines must be true:
 
@@ -137,8 +132,8 @@ next_to_constraint(
 ## (x24[4,3] & x26[3,5])    fox@#4, chesterfield@#3
 ## (x24[4,3] & x26[5,5])    fox@#4, chesterfield@#5
 ## (x24[5,3] & x26[4,5])    fox@#5, chesterfield@#4
-                     
-next_to_constraint(  
+
+next_to_constraint(
     c(x24[1,3] & x26[2,5]), #     fox@#1, chesterfield@#2
     c(x24[2,3] & x26[1,5]), #     fox@#2, chesterfield@#1
     c(x24[2,3] & x26[3,5]), #     fox@#2, chesterfield@#3
@@ -147,7 +142,7 @@ next_to_constraint(
     c(x24[4,3] & x26[3,5]), #     fox@#4, chesterfield@#3
     c(x24[4,3] & x26[5,5]), #     fox@#4, chesterfield@#5
     c(x24[5,3] & x26[4,5])) #     fox@#5, chesterfield@#4
-                       
+
 
 
 # clue 15: The Kools smoker lives next door to where the horse is kept. number = #2, pets = #4[horse=4], smokes = #6[kools=3]
@@ -171,4 +166,3 @@ next_to_constraint(
     c(x24[4,4] & x26[3,3]), #     horse@#4, kools@#3
     c(x24[4,4] & x26[5,3]), #     horse@#4, kools@#5
     c(x24[5,4] & x26[4,3])) #     horse@#5, kools@#4
-

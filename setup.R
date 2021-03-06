@@ -5,7 +5,10 @@
 
 library("abind")
 
-constraint <- function(v){write(c(v,0),file="zebra.cnf",ncolumns=1000,append=TRUE)}
+constraint <- function(v){
+    write(c(v,0),file=filename,ncolumns=1000,append=TRUE)
+    return(0)
+}
 
 
 f <- 1:5  # "five"
@@ -97,7 +100,7 @@ for(i in seq_len(5)){
 }  # i loop closes
 
 next_to_constraint <- function(...){
-    M <- as.matrix(expand.grid(as.list(...)))
+    M <- as.matrix(expand.grid(...))
     for(i in seq_len(nrow(M))){ constraint(M[i,]) }
     return(0)
 }
