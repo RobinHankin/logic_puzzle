@@ -1,0 +1,15 @@
+This is to solve the zebra and (eventually) the einstein logic
+puzzles.  In R, type source("zebra.R") and this will create file
+"zebra.cnf" which is in conjugate normal form (CNF).
+
+The numbers in zebra.cnf correspond to the various logical statements.
+
+To solve the puzzle, use any cnf solver.  I have been working with
+glucose or glucose-syrup (simp).  Then './glucose zebra.cnf' solves
+the puzzle in the sense of establishing whether the constraints are
+consistent or not, and './glucose -model zebra.cnf' provides an
+instantiation.
+
+./glucose -model zebra.cnf | tail -1 > zebra_solution.txt
+
+creates text file zebra_solution.txt which specifies the solution.  Then
