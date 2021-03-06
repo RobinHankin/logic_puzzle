@@ -81,7 +81,8 @@ exactly_one <- function(x){
 
 for(i in seq_along(L)){
     m <- L[[i]]
-    for(j in seq_along(nrow(m))){
+
+    for(j in seq_len(nrow(m))){
         exactly_one(m[j,])
         exactly_one(m[,j])
     }
