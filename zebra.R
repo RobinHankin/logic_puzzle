@@ -36,7 +36,7 @@ filename <- "zebra.cnf"
 source("setup.R")
 
 
-write("# comment line",file=filename,append=FALSE)
+write("",file=filename,append=FALSE)
 
 
 # clue 2: the englishman lives in the red house: colour = #1[red=1], nationality = #3[Brit=1]
@@ -134,14 +134,14 @@ next_to_constraint(
 ## (x24[5,3] & x26[4,5])    fox@#5, chesterfield@#4
 
 next_to_constraint(
-    c(x24[1,3] & x26[2,5]), #     fox@#1, chesterfield@#2
-    c(x24[2,3] & x26[1,5]), #     fox@#2, chesterfield@#1
-    c(x24[2,3] & x26[3,5]), #     fox@#2, chesterfield@#3
-    c(x24[3,3] & x26[2,5]), #     fox@#3, chesterfield@#2
-    c(x24[3,3] & x26[4,5]), #     fox@#3, chesterfield@#4
-    c(x24[4,3] & x26[3,5]), #     fox@#4, chesterfield@#3
-    c(x24[4,3] & x26[5,5]), #     fox@#4, chesterfield@#5
-    c(x24[5,3] & x26[4,5])) #     fox@#5, chesterfield@#4
+    c(x24[1,3] , x26[2,5]), #     fox@#1, chesterfield@#2
+    c(x24[2,3] , x26[1,5]), #     fox@#2, chesterfield@#1
+    c(x24[2,3] , x26[3,5]), #     fox@#2, chesterfield@#3
+    c(x24[3,3] , x26[2,5]), #     fox@#3, chesterfield@#2
+    c(x24[3,3] , x26[4,5]), #     fox@#3, chesterfield@#4
+    c(x24[4,3] , x26[3,5]), #     fox@#4, chesterfield@#3
+    c(x24[4,3] , x26[5,5]), #     fox@#4, chesterfield@#5
+    c(x24[5,3] , x26[4,5])) #     fox@#5, chesterfield@#4
 
 
 
@@ -158,11 +158,11 @@ next_to_constraint(
 ## (x24[5,4] & x26[4,3])    horse@#5, kools@#4
 
 next_to_constraint(
-    c(x24[1,4] & x26[2,3]), #     horse@#1, kools@#2
-    c(x24[2,4] & x26[1,3]), #     horse@#2, kools@#1
-    c(x24[2,4] & x26[3,3]), #     horse@#2, kools@#3
-    c(x24[3,4] & x26[2,3]), #     horse@#3, kools@#2
-    c(x24[3,4] & x26[4,3]), #     horse@#3, kools@#4
-    c(x24[4,4] & x26[3,3]), #     horse@#4, kools@#3
-    c(x24[4,4] & x26[5,3]), #     horse@#4, kools@#5
-    c(x24[5,4] & x26[4,3])) #     horse@#5, kools@#4
+    c(x24[1,4] , x26[2,3]), #     horse@#1, kools@#2
+    c(x24[2,4] , x26[1,3]), #     horse@#2, kools@#1
+    c(x24[2,4] , x26[3,3]), #     horse@#2, kools@#3
+    c(x24[3,4] , x26[2,3]), #     horse@#3, kools@#2
+    c(x24[3,4] , x26[4,3]), #     horse@#3, kools@#4
+    c(x24[4,4] , x26[3,3]), #     horse@#4, kools@#3
+    c(x24[4,4] , x26[5,3]), #     horse@#4, kools@#5
+    c(x24[5,4] , x26[4,3])) #     horse@#5, kools@#4
