@@ -53,10 +53,10 @@ desc <- function(n){
 }
 
 exactly_one <- function(x){
-    condition(x)   # it's one of them...
+    constraint(x)   # it's one of them...
     ind <- which(upper.tri(outer(seq_along(x),seq_along(x))),arr.ind=TRUE)
     for(i in seq_len(nrow(ind))){
-        condition(-x[ind[i,]]) # ... but not more than one
+        constraint(-x[ind[i,]]) # ... but not more than one
     }
     return(0)
 }
@@ -72,26 +72,26 @@ for(i in seq_along(L)){
 for(i in seq_len(5)){
     for(j in seq_len(5)){
         for(k in seq_len(5)){
-            condition(c(-x12[i,j],-x13[i,k],x23[j,k]))
-            condition(c(-x12[i,j],-x14[i,k],x24[j,k]))
-            condition(c(-x12[i,j],-x15[i,k],x25[j,k]))
-            condition(c(-x12[i,j],-x16[i,k],x26[j,k]))
-            condition(c(-x13[i,j],-x14[i,k],x34[j,k]))
-            condition(c(-x13[i,j],-x15[i,k],x35[j,k]))
-            condition(c(-x13[i,j],-x16[i,k],x36[j,k]))
-            condition(c(-x14[i,j],-x15[i,k],x45[j,k]))
-            condition(c(-x14[i,j],-x16[i,k],x46[j,k]))
-            condition(c(-x15[i,j],-x16[i,k],x56[j,k]))
-            condition(c(-x23[i,j],-x24[i,k],x34[j,k]))
-            condition(c(-x23[i,j],-x25[i,k],x35[j,k]))
-            condition(c(-x23[i,j],-x26[i,k],x36[j,k]))
-            condition(c(-x24[i,j],-x25[i,k],x45[j,k]))
-            condition(c(-x24[i,j],-x26[i,k],x46[j,k]))
-            condition(c(-x25[i,j],-x26[i,k],x56[j,k]))
-            condition(c(-x34[i,j],-x35[i,k],x45[j,k]))
-            condition(c(-x34[i,j],-x36[i,k],x46[j,k]))
-            condition(c(-x35[i,j],-x36[i,k],x56[j,k]))
-            condition(c(-x45[i,j],-x46[i,k],x56[j,k]))
+            constraint(c(-x12[i,j],-x13[i,k],x23[j,k]))
+            constraint(c(-x12[i,j],-x14[i,k],x24[j,k]))
+            constraint(c(-x12[i,j],-x15[i,k],x25[j,k]))
+            constraint(c(-x12[i,j],-x16[i,k],x26[j,k]))
+            constraint(c(-x13[i,j],-x14[i,k],x34[j,k]))
+            constraint(c(-x13[i,j],-x15[i,k],x35[j,k]))
+            constraint(c(-x13[i,j],-x16[i,k],x36[j,k]))
+            constraint(c(-x14[i,j],-x15[i,k],x45[j,k]))
+            constraint(c(-x14[i,j],-x16[i,k],x46[j,k]))
+            constraint(c(-x15[i,j],-x16[i,k],x56[j,k]))
+            constraint(c(-x23[i,j],-x24[i,k],x34[j,k]))
+            constraint(c(-x23[i,j],-x25[i,k],x35[j,k]))
+            constraint(c(-x23[i,j],-x26[i,k],x36[j,k]))
+            constraint(c(-x24[i,j],-x25[i,k],x45[j,k]))
+            constraint(c(-x24[i,j],-x26[i,k],x46[j,k]))
+            constraint(c(-x25[i,j],-x26[i,k],x56[j,k]))
+            constraint(c(-x34[i,j],-x35[i,k],x45[j,k]))
+            constraint(c(-x34[i,j],-x36[i,k],x46[j,k]))
+            constraint(c(-x35[i,j],-x36[i,k],x56[j,k]))
+            constraint(c(-x45[i,j],-x46[i,k],x56[j,k]))
         } # k loop closes
     } # j loop closes
 }  # i loop closes
