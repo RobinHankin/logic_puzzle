@@ -37,11 +37,21 @@ x46 <- f(14, list(pet=pet, smoke=smoke))
 
 x56 <- f(15, list(drink=drink, smoke=smoke))
 
-A <- abind(x12, x13, x14, x15, x16, x23, x24, x25, x26, x34, x35, x36, x45, x46, x56,along=3)
+A <- abind(
+    x12, x13, x14, x15, x16,
+         x23, x24, x25, x26,
+              x34, x35, x36,
+                   x45, x46,
+                        x56,
+    along=3)
+
+
 L <- list(
     x12=x12, x13=x13, x14=x14, x15=x15, x16=x16,
-    x23=x23, x24=x24, x25=x25, x26=x26, x34=x34,
-    x35=x35, x36=x36, x45=x45, x46=x46, x56=x56
+             x23=x23, x24=x24, x25=x25, x26=x26,
+                      x34=x34, x35=x35, x36=x36,
+                               x45=x45, x46=x46,
+                                        x56=x56
 )
 
 dimnames(A) <-
