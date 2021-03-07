@@ -33,10 +33,11 @@ smoke       <- c("parliaments","oldgold","kools","luckystrike","chesterfield") #
 index <- c(colour=1, number=2, nationality=3,pet=4,drink=5,smoke=6)
 
 filename <- "zebra.cnf"
+write("",file=filename,append=FALSE)
 source("setup.R")
 
 
-write("",file=filename,append=FALSE)
+
 
 
 # clue 2: the englishman lives in the red house: colour = #1[red=1], nationality = #3[Brit=1]
