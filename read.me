@@ -13,12 +13,32 @@ instantiation.
 ./glucose -model zebra.cnf | tail -1 > zebra_solution.txt
 
 creates text file zebra_solution.txt which specifies the solution.
-Then, in R, function show() interprets zebra_solution.txt
+Then, in R, function show() interprets zebra_solution.txt.
 
- show("zebra")
-     [,1]       [,2]         
-[1,] "green"    "zebra"      
-[2,] "five"     "zebra"      
-[3,] "japanese" "zebra"      
-[4,] "zebra"    "coffee"     
-[5,] "zebra"    "parliaments"
+> show()
+      [,1]        [,2]          
+ [1,] "blue"      "one"         
+ [2,] "yellow"    "two"         
+ [3,] "red"       "three"       
+
+[snip]
+
+[73,] "water"     "kools"       
+[74,] "orange"    "luckystrike" 
+[75,] "tea"       "chesterfield"
+
+Thus (from the first line) the blue house is number one, the yellow
+house is number two, and so on, down to the last line that shows that
+tea is drunk in the same house that chesterfield is smoked.
+
+Function show() takes a "select" argument that allows one to drill
+down to just the lines of interest.  Thus:
+
+
+> show("zebra")
+[1] green       five        japanese    coffee      parliaments
+
+
+and we see that the zebra lives in the green house, which is number
+five, owned by the japanes man who drinks coffee and smokes
+parliaments.
