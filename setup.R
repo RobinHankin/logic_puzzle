@@ -134,11 +134,10 @@ show <- function(select, filename = "zebra_solution.txt"){
     for(i in seq_along(a)){
         out[i,] <- desc(a[i])
     }
-    if(missing(select)){
-        return(out)
-    } else {
-        f <- function(p){select %in% p}
-        return(out[apply(out,1,f),])
+    if(!missing(select)){
+        out <- out[apply(out,1,function(p){select %in% p}),]
+        out <- noquote(apply(out,1,function(x){x[x!=select]}))
     }
+    return(out)
 }
     
