@@ -10,10 +10,6 @@ constraint <- function(v){
 }
 
 
-f <- 1:5  # "five"
-tf <- 1:25
-
-
 f <- function(n,d){matrix(25*(n-1) + 1:25, 5,5,dimnames=d)}
 
 x12 <- f(1, list(colour=colour, number=number))
@@ -35,6 +31,31 @@ x45 <- f(13, list(pet=pet, drink=drink))
 x46 <- f(14, list(pet=pet, smoke=smoke))
 
 x56 <- f(15, list(drink=drink, smoke=smoke))
+
+
+## in the above lines, we create 15 variables with names "xmn",
+## m=12345,n=123456, m<n.  These variables are 5x5 matrices and xmn
+## has rows corresponding to variable 'm' and columns corresponding to
+## variable 'n' [see zebra.R or einstein.R].  Taking zebra.R as an
+## example, we have x35 has rows for nationality (variable number 3)
+## and columns for drink (variable number 5).
+
+## > x35
+##            drink
+## nationality tea coffee milk orange water
+##   english   251    256  261    266   271
+##   norwegian 252    257  262    267   272
+##   spanish   253    258  263    268   273
+##   ukranian  254    259  264    269   274
+##   japanese  255    260  265    270   275
+## > 
+
+
+## Taking the top-left entry, x35[1,1] as an example, this is equal to
+## 251.  So in the resulting .cnf file (zebra.cnf in the case of
+## zebra.R), variable 251 corresponds to the truth of proposition
+## "the englishman drinks tea", and 269 corresponds to the ukranian
+## drinking orange.
 
 A <- abind(
     x12, x13, x14, x15, x16,
