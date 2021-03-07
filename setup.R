@@ -6,8 +6,7 @@
 library("abind")
 
 constraint <- function(v){
-    write(c(v,0),file=filename,ncolumns=1000,append=TRUE)
-    return(0)
+    write(c(v,0),file=filename,ncolumns=length(v)+1,append=TRUE)
 }
 
 
@@ -66,8 +65,8 @@ dimnames(A) <-
 
 desc <- function(n){
     jj <- c(which(A==n,arr.ind=TRUE))
-#    as.vector(unlist(dimnames(L[[jj[3]]][jj[1],jj[2],drop=FALSE])))
-    L[[jj[3]]][jj[1],jj[2],drop=FALSE]
+    out <- L[[jj[3]]][jj[1],jj[2],drop=FALSE]
+    c(rownames(out),colnames(out))
 }
 
 exactly_one <- function(x){
@@ -81,7 +80,6 @@ exactly_one <- function(x){
 
 for(i in seq_along(L)){
     m <- L[[i]]
-
     for(j in seq_len(nrow(m))){
         exactly_one(m[j,])
         exactly_one(m[,j])
@@ -128,13 +126,19 @@ next_to_constraint <- function(...){
     return(0)
 }
           
-show <- function(filename = "zebra_solution.txt"){
+show <- function(select, filename = "zebra_solution.txt"){
     a <- as.vector(unlist(read.table(filename)[-1]))
     out <- list()
     a <- a[a>0]
+    out <- matrix("",length(a),2)
     for(i in seq_along(a)){
-        out[[i]] <- desc(a[i])
+        out[i,] <- desc(a[i])
     }
-    return(out)
+    if(missing(select)){
+        return(out)
+    } else {
+        f <- function(p){select %in% p}
+        return(out[apply(out,1,f),])
+    }
 }
     
