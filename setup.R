@@ -26,11 +26,12 @@ exactly_one <- function(x){
     return(0)
 }
 
-logical_implication <- function(x){ # C = A & B
-    A <- x[1]
-    B <- x[2]
-    C <- x[3]
-    constraint(c(-A,-B,C))
+logical_implication <- function(x){ # A & B -> C
+#    A <- x[1]
+#    B <- x[2]
+#    C <- x[3]
+    constraint(c(-x[1],-x[2],x[3]))
+    return(0)
 }
 
 next_to_constraint <- function(...){
