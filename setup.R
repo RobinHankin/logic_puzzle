@@ -2,6 +2,8 @@
 # and einstein puzzles.  It is intended to be called (via "source()")
 # by zebra.R or einstein.R.
 
+# In this file we define a bunch of functions, and call them at the
+# end.
 
 library("abind")
 
@@ -9,6 +11,49 @@ constraint <- function(v){
     write(c(v,0),file=filename,ncolumns=length(v)+1,append=TRUE)
 }
 
+desc <- function(n){
+    jj <- c(which(A==n,arr.ind=TRUE))
+    out <- L[[jj[3]]][jj[1],jj[2],drop=FALSE]
+    c(rownames(out),colnames(out))
+}
+
+exactly_one <- function(x){
+    constraint(x)   # it's one of them...
+    ind <- which(upper.tri(outer(seq_along(x),seq_along(x))),arr.ind=TRUE)
+    for(i in seq_len(nrow(ind))){
+        constraint(-x[ind[i,]]) # ... but not more than one
+    }
+    return(0)
+}
+
+logical_implication <- function(x){ # C = A & B
+    A <- x[1]
+    B <- x[2]
+    C <- x[3]
+    constraint(c(-A,-B,C))
+}
+
+next_to_constraint <- function(...){
+    M <- as.matrix(expand.grid(...))
+    for(i in seq_len(nrow(M))){ constraint(M[i,]) }
+    return(0)
+}
+          
+show <- function(select, filename = "zebra_solution.txt"){
+    a <- as.vector(unlist(read.table(filename)[-1]))
+    out <- list()
+    a <- a[a>0]
+    out <- matrix("",length(a),2)
+    for(i in seq_along(a)){
+        out[i,] <- desc(a[i])
+    }
+    if(!missing(select)){
+        out <- out[apply(out,1,function(p){select %in% p}),]
+        out <- noquote(apply(out,1,function(x){x[x!=select]}))
+    }
+    return(out)
+}
+    
 
 f <- function(n,d){matrix(25*(n-1) + 1:25, 5,5,dimnames=d)}
 
@@ -84,34 +129,12 @@ dimnames(A) <-
                                            "x56"
                ))
 
-desc <- function(n){
-    jj <- c(which(A==n,arr.ind=TRUE))
-    out <- L[[jj[3]]][jj[1],jj[2],drop=FALSE]
-    c(rownames(out),colnames(out))
-}
-
-exactly_one <- function(x){
-    constraint(x)   # it's one of them...
-    ind <- which(upper.tri(outer(seq_along(x),seq_along(x))),arr.ind=TRUE)
-    for(i in seq_len(nrow(ind))){
-        constraint(-x[ind[i,]]) # ... but not more than one
-    }
-    return(0)
-}
-
 for(i in seq_along(L)){
     m <- L[[i]]
     for(j in seq_len(nrow(m))){
         exactly_one(m[j,])
         exactly_one(m[,j])
     }
-}
-
-logical_implication <- function(x){ # C = A & B
-    A <- x[1]
-    B <- x[2]
-    C <- x[3]
-    constraint(c(-A,-B,C))
 }
 
 for(i in seq_len(5)){
@@ -141,24 +164,3 @@ for(i in seq_len(5)){
     } # j loop closes
 }  # i loop closes
 
-next_to_constraint <- function(...){
-    M <- as.matrix(expand.grid(...))
-    for(i in seq_len(nrow(M))){ constraint(M[i,]) }
-    return(0)
-}
-          
-show <- function(select, filename = "zebra_solution.txt"){
-    a <- as.vector(unlist(read.table(filename)[-1]))
-    out <- list()
-    a <- a[a>0]
-    out <- matrix("",length(a),2)
-    for(i in seq_along(a)){
-        out[i,] <- desc(a[i])
-    }
-    if(!missing(select)){
-        out <- out[apply(out,1,function(p){select %in% p}),]
-        out <- noquote(apply(out,1,function(x){x[x!=select]}))
-    }
-    return(out)
-}
-    
