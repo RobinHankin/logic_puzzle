@@ -12,4 +12,13 @@ instantiation.
 
 ./glucose -model zebra.cnf | tail -1 > zebra_solution.txt
 
-creates text file zebra_solution.txt which specifies the solution.  Then
+creates text file zebra_solution.txt which specifies the solution.
+Then, in R, function show() interprets zebra_solution.txt
+
+ show("zebra")
+     [,1]       [,2]         
+[1,] "green"    "zebra"      
+[2,] "five"     "zebra"      
+[3,] "japanese" "zebra"      
+[4,] "zebra"    "coffee"     
+[5,] "zebra"    "parliaments"
