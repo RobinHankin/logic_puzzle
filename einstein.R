@@ -55,3 +55,5 @@ smoke <- c("prince"     ,"pallmall","dunhill","bluemaster","blends"       ) # 6
 ##       c("parliaments","oldgold"  ,"kools" ,"luckystrike","chesterfield")
 
 
+## For a solution to the einstein problem, see the note at the end of
+## zebra.R.
