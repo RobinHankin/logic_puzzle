@@ -23,12 +23,12 @@
 
 
 # zebra puzzle:
-colour      <- c("red","green","ivory","yellow","blue")                   # 1
-number      <- c("one","two","three","four","five")                        # 2
-nationality <- c("english","norwegian","spanish","ukranian","japanese")     # 3
-pet         <- c("dogs","snails","fox","horse","zebra")                      # 4
-drink       <- c("tea","coffee","milk","orange","water")                      # 5
-smoke       <- c("parliaments","oldgold","kools","luckystrike","chesterfield") # 6
+colour      <- c("red","green","ivory","yellow","blue") 
+number      <- c("one","two","three","four","five")     
+nationality <- c("english","norwegian","spanish","ukranian","japanese")
+pet         <- c("dogs","snails","fox","horse","zebra")                
+drink       <- c("tea","coffee","milk","orange","water")               
+smoke <- c("parliaments","oldgold","kools","luckystrike","chesterfield")
 
 index <- c(colour=1, number=2, nationality=3,pet=4,drink=5,smoke=6)
 
@@ -167,3 +167,23 @@ next_to_constraint(
     c(x24[4,4] , x26[3,3]), #     horse@#4, kools@#3
     c(x24[4,4] , x26[5,3]), #     horse@#4, kools@#5
     c(x24[5,4] , x26[4,3])) #     horse@#5, kools@#4
+
+
+
+## Clue 16 of the einstein puzzle, in zebra terminology, is:
+## "chesterfield smoker has a neighbour who drinks water": drink =
+## #5[water=5], smokes = #6[chesterfield=5]
+##
+## However, this is redundant.  Looking at the puzzle solution for
+## clues 1-15 we see
+
+## > show("chesterfield")
+## [1] blue     one      ukranian horse    tea     
+## > show("water")
+## [1] yellow    two       norwegian fox       kools    
+
+
+## So the chesterfield smoker lives at number 1 and the water drinker
+## lives at number 2.  So we can deduce clue 16 of the einstein puzzle
+## from clues 1-15 of the zebra puzzle.
+
