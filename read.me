@@ -1,5 +1,5 @@
-This is to solve the zebra and (eventually) the einstein logic
-puzzles.  In R, type
+This is to solve the zebra logic puzzle and the einstein logic puzzle.
+In R, type
 
 source("zebra.R")
 
@@ -23,8 +23,9 @@ and './glucose -model zebra.cnf' provides an instantiation.
 
 ./glucose -model zebra.cnf | tail -1 > zebra_solution.txt
 
-creates text file zebra_solution.txt which specifies the solution.
-Then, in R, function show() interprets zebra_solution.txt.
+creates text file zebra_solution.txt which specifies the solution
+(note that file "zebra_solution.txt" is held under version control).
+Then, in R, function show() reads and interprets zebra_solution.txt:
 
 > show()
       [,1]        [,2]          
