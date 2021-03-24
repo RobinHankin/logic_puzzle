@@ -37,21 +37,21 @@
 
 
 # Einstein puzzle:
-colour <- c("red","green","white","yellow","blue")               # 1
-##        c("red","green","ivory","yellow","blue")               # 1
+colour <- c("red","green","white","yellow","blue")               # 1 einstein
+##        c("red","green","ivory","yellow","blue")               # 1 zebra
 
-number <- c("one","two","three","four","five")                   # 2
+number <- c("one","two","three","four","five")                   # 2 einstein and zebra
 
-nationality <- c("brit"   ,"norwegian","swede"  ,"dane"   ,"german")     # 3
-##             c("english","norwegian","spanish","ukraine","German")     # 3
+nationality <- c("brit"   ,"norwegian","swede"  ,"dane"   ,"german")     # 3 einstein
+##             c("english","norwegian","spanish","ukraine","japanese")   # 3 zebra
 
-pet <- c("dogs","birds" ,"cats","horses","fish" )                  # 4
-##     c("dogs","snails","fox" ,"horses","zebra")                  # 4
+pet <- c("dogs","birds" ,"cats","horses","fish" )                  # 4 einstein
+##     c("dogs","snails","fox" ,"horses","zebra")                  # 4 zebra
 
-drink <- c("tea","coffee","milk","beer"  ,"water")                 # 5
-##       c("tea","coffee","milk","orange","water")                 # 5
+drink <- c("tea","coffee","milk","beer"  ,"water")                 # 5 einstein
+##       c("tea","coffee","milk","orange","water")                 # 5 zebra
 
-smoke <- c("prince"     ,"pallmall","dunhill","bluemaster","blends"       ) # 6
-##       c("parliaments","oldgold"  ,"kools" ,"luckystrike","chesterfield")
+smoke <- c("prince"     ,"pallmall","dunhill","bluemaster","blends"       ) # 6 einstein
+##       c("parliaments","oldgold"  ,"kools" ,"luckystrike","chesterfield") # 6 zebra
 
 
